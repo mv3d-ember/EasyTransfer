@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Alex Rivera Photography</title>
+<meta name="description" content="About Alex Rivera — photographer background, approach, and equipment." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand">Alex Rivera</a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <span class="eyebrow">Behind the Lens</span>
+    <h1>About</h1>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0;">
+  <div class="container about-layout">
+    <div class="about-photo">
+      <img src="images/profile.svg" alt="Portrait of Alex Rivera" />
+    </div>
+    <div class="about-text">
+      <h2>Hi, I'm Alex.</h2>
+      <p>
+        I'm a photographer based in the Pacific Northwest, working across portraits, landscapes,
+        street, and architecture. I'm drawn to quiet, unstaged moments — the kind of light and
+        composition you only notice if you slow down long enough to look.
+      </p>
+      <p>
+        I've spent the last several years shooting for clients and for myself, and this site is a
+        running collection of the work I'm proudest of. Replace this bio, the stats below, and the
+        equipment list with your own details — see the README for exactly where to edit.
+      </p>
+
+      <div class="stat-row">
+        <div><strong>8+</strong><span>Years Shooting</span></div>
+        <div><strong>120+</strong><span>Sessions</span></div>
+        <div><strong>4</strong><span>Focus Areas</span></div>
+      </div>
+
+      <ul class="equipment-list">
+        <li><span>Camera</span><span>Full-frame mirrorless body</span></li>
+        <li><span>Primary Lens</span><span>35mm f/1.4</span></li>
+        <li><span>Portrait Lens</span><span>85mm f/1.8</span></li>
+        <li><span>Editing</span><span>Lightroom &amp; Capture One</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; width:100%;">
+    <span>&copy; <span id="year"></span> Alex Rivera Photography</span>
+    <ul class="footer-social">
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

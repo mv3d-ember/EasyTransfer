@@ -1,29 +1,71 @@
-# EasyTransfer
+# Alex Rivera Photography
 
-A simple self-hosted file storage app — upload files, keep them on the server, and download them later. Like a minimal Google Drive.
+A static photography portfolio site: a hero landing page, a filterable gallery organized by
+category, an about page, and a contact page. No backend, no build step — just HTML, CSS, and JS,
+deployable straight to GitHub Pages.
+
+## Structure
+
+```
+index.html          Home page (hero + featured work)
+gallery.html         Full gallery with category filter tabs + lightbox
+about.html            Bio, stats, equipment
+contact.html          Contact info + form
+css/style.css          All styling
+js/photos-data.js      The list of photos (edit this to add/remove/reorder photos)
+js/main.js              Shared behavior: header scroll state, mobile nav, grid render, lightbox
+images/placeholders/    Placeholder photo tiles (SVG) — swap these for real photos
+images/hero.svg          Placeholder hero background
+images/profile.svg       Placeholder profile photo for the about page
+```
+
+## Customizing
+
+**Your name and tagline** — currently "Alex Rivera" everywhere. Find/replace `Alex Rivera` across
+the `.html` files, and edit the tagline text in the `.hero-content` block of `index.html`.
+
+**Adding your real photos**
+1. Drop your image files into `images/` (e.g. `images/photos/sunset.jpg`).
+2. Open `js/photos-data.js` and edit the `PHOTOS` array — each entry needs an `id`, a `category`
+   (must match one of `portraits`, `landscapes`, `street`, `architecture`, or a new category you
+   add), a `title`, and a `src` pointing at your image file.
+3. To add a new category, also add it to `CATEGORY_LABELS` in the same file, and add a matching
+   filter button in `gallery.html`'s `#filter-tabs`.
+4. `FEATURED_IDS` in `photos-data.js` controls which 6 photos show on the home page — update it to
+   point at your best shots.
+5. Delete the files in `images/placeholders/` (and `images/hero.svg`, `images/profile.svg`) once
+   you've swapped them out, or keep them as a fallback.
+
+**Bio, stats, equipment** — edit directly in `about.html`.
+
+**Contact form** — the form in `contact.html` currently posts to a placeholder Formspree endpoint
+and won't deliver anywhere until you connect it:
+1. Go to [formspree.io](https://formspree.io) and create a free account.
+2. Create a new form; Formspree gives you a form ID.
+3. In `contact.html`, replace `YOUR_FORM_ID` in the `<form action="https://formspree.io/f/YOUR_FORM_ID">`
+   line with your real ID, and delete the `.form-note` paragraph below the submit button.
+
+Alternatively, just remove the `<form>` entirely and rely on the email link — no setup required.
 
 ## Running locally
 
+No install needed — any static file server works, e.g.:
+
 ```bash
-npm install
-npm start
+npx serve .
+# or
+python3 -m http.server 8000
 ```
 
-Then open http://localhost:3000
+Then open the printed local URL.
 
-## How it works
+## Deploying to GitHub Pages
 
-- **Backend**: Express + Multer. Uploaded files are stored on disk in `uploads/` under a generated UUID-based filename (to avoid collisions/path traversal), while the original filename, size, MIME type, and upload timestamp are recorded in `data/files.json`.
-- **Frontend**: Static HTML/CSS/JS (`public/`) with drag-and-drop upload, per-file progress bars, and a table of stored files with download/delete actions.
+1. Push this repo to GitHub (already done if you're reading this from the repo).
+2. In the repo, go to **Settings → Pages**.
+3. Under **Build and deployment → Source**, choose **Deploy from a branch**.
+4. Pick the branch this code is on, folder **/ (root)**, then **Save**.
+5. GitHub gives you a URL like `https://<username>.github.io/<repo>/` within a minute or two.
 
-## API
-
-- `GET /api/files` — list stored files
-- `POST /api/upload` — upload one or more files (multipart field `files`)
-- `GET /api/files/:id/download` — download a file by id
-- `DELETE /api/files/:id` — delete a file by id
-
-## Configuration
-
-- `PORT` — server port (default `3000`)
-- Max upload size is 500MB per file (edit `MAX_FILE_SIZE` in `server.js` to change).
+Every push to that branch will redeploy automatically — no further setup needed since this is a
+plain static site.

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alex Rivera — Photography</title>
+<meta name="description" content="Photography portfolio of Alex Rivera — portraits, landscapes, street and architecture." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand">Alex Rivera</a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<section class="hero">
+  <img src="images/hero.svg" alt="" />
+  <div class="hero-content">
+    <span class="eyebrow">Photography Portfolio</span>
+    <h1>Alex Rivera</h1>
+    <p>Portraits, landscapes, and quiet moments from the street — captured one frame at a time.</p>
+  </div>
+  <div class="scroll-cue"><span class="line"></span>Scroll</div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Selected Work</span>
+      <h2>Featured Photographs</h2>
+    </div>
+    <div class="grid" id="featured-grid"></div>
+    <div class="section-cta">
+      <a href="gallery.html" class="btn">View Full Gallery</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; width:100%;">
+    <span>&copy; <span id="year"></span> Alex Rivera Photography</span>
+    <ul class="footer-social">
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="lightbox">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" aria-label="Previous">&#8249;</button>
+  <button class="lightbox-next" aria-label="Next">&#8250;</button>
+  <figure class="lightbox-figure">
+    <img src="" alt="" />
+    <figcaption class="lightbox-caption"><strong></strong><span></span></figcaption>
+  </figure>
+</div>
+
+<script src="js/photos-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const featured = FEATURED_IDS.map((id) => PHOTOS.find((p) => p.id === id)).filter(Boolean);
+  const grid = document.getElementById('featured-grid');
+  renderGrid(grid, featured);
+
+  const lightbox = initLightbox(() => featured);
+  grid.addEventListener('click', (e) => {
+    const item = e.target.closest('.grid-item');
+    if (!item) return;
+    const index = featured.findIndex((p) => p.id === item.dataset.id);
+    lightbox.open(index);
+  });
+</script>
+</body>
+</html>

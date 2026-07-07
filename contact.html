@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — Alex Rivera Photography</title>
+<meta name="description" content="Get in touch with Alex Rivera for bookings and inquiries." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand">Alex Rivera</a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <span class="eyebrow">Let's Work Together</span>
+    <h1>Contact</h1>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0;">
+  <div class="container contact-layout">
+    <div class="contact-info">
+      <h2>Get in touch</h2>
+      <div class="contact-detail">
+        <span>Email</span>
+        <a href="mailto:hello@alexrivera.com">hello@alexrivera.com</a>
+      </div>
+      <div class="contact-detail">
+        <span>Location</span>
+        <p>Pacific Northwest, USA</p>
+      </div>
+      <div class="contact-detail">
+        <span>Availability</span>
+        <p>Bookings open for portrait & event sessions</p>
+      </div>
+      <div class="social-row">
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:hello@alexrivera.com">Email</a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent">Send Message</button>
+        <p class="form-note">
+          This form isn't wired up yet — it points at a placeholder Formspree endpoint.
+          See the README for a 2-minute setup to make it actually deliver messages to your inbox.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; width:100%;">
+    <span>&copy; <span id="year"></span> Alex Rivera Photography</span>
+    <ul class="footer-social">
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

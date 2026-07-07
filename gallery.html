@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gallery — Alex Rivera Photography</title>
+<meta name="description" content="Browse the full photography gallery by category: portraits, landscapes, street and architecture." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand">Alex Rivera</a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <span class="eyebrow">The Full Collection</span>
+    <h1>Gallery</h1>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="filter-tabs" id="filter-tabs">
+      <button data-filter="all" class="active">All</button>
+      <button data-filter="portraits">Portraits</button>
+      <button data-filter="landscapes">Landscapes</button>
+      <button data-filter="street">Street</button>
+      <button data-filter="architecture">Architecture</button>
+    </div>
+    <div class="grid" id="gallery-grid"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; width:100%;">
+    <span>&copy; <span id="year"></span> Alex Rivera Photography</span>
+    <ul class="footer-social">
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="lightbox">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" aria-label="Previous">&#8249;</button>
+  <button class="lightbox-next" aria-label="Next">&#8250;</button>
+  <figure class="lightbox-figure">
+    <img src="" alt="" />
+    <figcaption class="lightbox-caption"><strong></strong><span></span></figcaption>
+  </figure>
+</div>
+
+<script src="js/photos-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const grid = document.getElementById('gallery-grid');
+  const tabs = document.querySelectorAll('#filter-tabs button');
+  let current = PHOTOS;
+
+  function applyFilter(filter) {
+    current = filter === 'all' ? PHOTOS : PHOTOS.filter((p) => p.category === filter);
+    renderGrid(grid, current);
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+      applyFilter(tab.dataset.filter);
+    });
+  });
+
+  applyFilter('all');
+
+  const lightbox = initLightbox(() => current);
+  grid.addEventListener('click', (e) => {
+    const item = e.target.closest('.grid-item');
+    if (!item) return;
+    const index = current.findIndex((p) => p.id === item.dataset.id);
+    lightbox.open(index);
+  });
+</script>
+</body>
+</html>
