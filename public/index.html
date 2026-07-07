@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyTransfer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>EasyTransfer</h1>
+      <p>Upload files, store them here, and download them anytime.</p>
+    </header>
+
+    <main>
+      <section id="dropzone" class="dropzone">
+        <input type="file" id="file-input" multiple hidden />
+        <div class="dropzone-content">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 16V4m0 0L7 9m5-5l5 5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p><strong>Drag & drop</strong> files here, or <span class="browse-link">browse</span></p>
+          <p class="hint">Up to 500MB per file</p>
+        </div>
+      </section>
+
+      <ul id="upload-progress" class="upload-progress"></ul>
+
+      <section class="files-section">
+        <div class="files-header">
+          <h2>Your files</h2>
+          <span id="file-count" class="file-count"></span>
+        </div>
+        <div id="empty-state" class="empty-state" hidden>No files uploaded yet.</div>
+        <table id="files-table" class="files-table" hidden>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Size</th>
+              <th>Uploaded</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="files-body"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
