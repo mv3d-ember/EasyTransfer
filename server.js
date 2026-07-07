@@ -5,8 +5,9 @@ const path = require('path');
 const crypto = require('crypto');
 
 const PORT = process.env.PORT || 3000;
-const UPLOAD_DIR = path.join(__dirname, 'uploads');
-const DATA_DIR = path.join(__dirname, 'data');
+const STORAGE_ROOT = process.env.STORAGE_ROOT || __dirname;
+const UPLOAD_DIR = path.join(STORAGE_ROOT, 'uploads');
+const DATA_DIR = path.join(STORAGE_ROOT, 'data');
 const METADATA_FILE = path.join(DATA_DIR, 'files.json');
 const MAX_FILE_SIZE = 500 * 1024 * 1024; // 500MB per file
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
